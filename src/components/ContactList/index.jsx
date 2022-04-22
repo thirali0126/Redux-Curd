@@ -1,21 +1,20 @@
-import { useSelector } from "react-redux";
-import { useDispatch } from "react-redux";
-import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
-import { useHistory } from "react-router-dom";
+import {useSelector} from 'react-redux';
+import {useDispatch} from 'react-redux';
+import React, {useState, useEffect} from 'react';
+import {Link} from 'react-router-dom';
+import {useHistory} from 'react-router-dom';
 import {DeleteContact} from '../../Redux/Action/ContactAction';
 
-
-export default function ShowContact() {
-  let history = useHistory();
-  const dispatch = useDispatch()
+export default function ShowContact () {
+  let history = useHistory ();
+  const dispatch = useDispatch ();
 
   const submithandler = () => {
-    history.push("/ContactForm");
-  }
-  
-  const contactSelector = useSelector((state) => state.contacts.contacts)
-  console.log("contactSelector ", contactSelector)
+    history.push ('/ContactForm');
+  };
+
+  const contactSelector = useSelector (state => state.contacts.contacts);
+  console.log ('contactSelector ', contactSelector);
 
   return (
     <div className="container">
@@ -30,11 +29,11 @@ export default function ShowContact() {
                 <th scope="col">Name</th>
                 <th scope="col">Mobile</th>
                 <th scope="col">Gender</th>
-                <th scope="col"></th>
+                <tr scope="col" />
               </tr>
             </thead>
             <tbody>
-              {contactSelector.map(contacts => (
+              {contactSelector.map (contacts => (
                 <tr>
                   <td>{contacts.id}</td>
                   <td>{contacts.Debit}</td>
@@ -46,26 +45,29 @@ export default function ShowContact() {
 
                     <button
                       type="button"
-                      onClick={() => dispatch(DeleteContact(contacts.id))}
+                      onClick={() => dispatch (DeleteContact (contacts.id))}
                       className="btn btn-sm btn-danger mx-3"
                     >
                       Delete
                     </button>
-                    <Link>
+                    <Link to={`/edit/${contacts.id}`}>
                       <span>edit</span>
-                    </Link>
+                    </Link>;
+
                   </td>
                 </tr>
               ))}
             </tbody>
           </table>
-          <button type="button" onClick={submithandler} className="btn btn-outline-dark btn-sm ">Add Contact</button>
+          <button
+            type="button"
+            onClick={submithandler}
+            className="btn btn-outline-dark btn-sm "
+          >
+            Add Contact
+          </button>
         </div>
       </div>
     </div>
-
   );
-
-
-
 }

@@ -13,4 +13,15 @@ export const DeleteContact = deletedata =>
   });
 
 
+export const getContact = getdata =>
+  (console.log ('getContactAction', getdata), {
+    type: 'GET_CONTACT',
+    payload: getdata,
+  });
+
+export const updateContact = updatedata =>
+  (console.log ('updateContactAction', updatedata), {
+    type: 'UPDATE_CONTACT',
+    payload: updatedata,
+  });
 

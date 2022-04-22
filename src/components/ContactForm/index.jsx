@@ -2,7 +2,11 @@ import React from 'react';
 import {useState, useEffect} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import {useHistory, useParams} from 'react-router-dom';
-import {AddContact} from '../../Redux/Action/ContactAction';
+import {
+  AddContact,
+  getContact,
+  updateContact,
+} from '../../Redux/Action/ContactAction';
 
 import shortid from 'shortid';
 
@@ -15,23 +19,54 @@ export default function ContactForm () {
   const [Name, setName] = useState ('');
   const [number, setnumber] = useState ('');
   const [Gender, setGender] = useState ('');
+  const getcontactSelector = useSelector (state => state.contacts.contact);
+  console.log ('getcongetcontactSelector', getcontactSelector);
 
   const submithandler = e => {
     e.preventDefault ();
-
-    // update handler..
-
-    const formdata = {
-      id: shortid.generate (),
-      Debit: Debit,
-      Name: Name,
-      Number: number,
-      Gender: Gender,
-    };
-    dispatch (AddContact (formdata));
-    console.log ('formdata' + JSON.stringify (formdata));
-    history.push ('/ShowContact');
+    if (id) {
+      const formdata = {
+        Debit: Debit,
+        Name: Name,
+        Number: number,
+        Gender: Gender,
+      };
+      dispatch (updateContact (formdata));
+      history.push ('/ShowContact');
+    } else {
+      const formdata = {
+        id: shortid.generate (),
+        Debit: Debit,
+        Name: Name,
+        Number: number,
+        Gender: Gender,
+      };
+      dispatch (AddContact (formdata));
+      console.log ('formdata' + JSON.stringify (formdata));
+      history.push ('/ShowContact');
+    }
   };
+  useEffect (
+    () => {
+      if (id) {
+        dispatch (getContact (id));
+      }
+    },
+    [id]
+  );
+
+  useEffect (
+    () => {
+      console.log ('getcontactSelector', getcontactSelector);
+      if (getcontactSelector != null) {
+        setDebit (getcontactSelector.Debit)
+        setName (getcontactSelector.Name);
+        setnumber (getcontactSelector.Number);
+        setGender (getcontactSelector.Gender)
+      }
+    },
+    [getcontactSelector]
+  );
 
   return (
     <div className="container-fluid">
