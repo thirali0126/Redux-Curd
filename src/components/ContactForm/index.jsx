@@ -22,10 +22,13 @@ export default function ContactForm () {
   const getcontactSelector = useSelector (state => state.contacts.contact);
   console.log ('getcongetcontactSelector', getcontactSelector);
 
+  const geteditSelector = useSelector (state => state.contacts);
+  console.log("geteditSelector",geteditSelector.contacts);
   const submithandler = e => {
     e.preventDefault ();
     if (id) {
       const formdata = {
+        id: id,
         Debit: Debit,
         Name: Name,
         Number: number,
@@ -41,6 +44,7 @@ export default function ContactForm () {
         Number: number,
         Gender: Gender,
       };
+      dispatch (getContact (''));
       dispatch (AddContact (formdata));
       console.log ('formdata' + JSON.stringify (formdata));
       history.push ('/ShowContact');

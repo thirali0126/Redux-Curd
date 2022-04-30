@@ -3,7 +3,8 @@ import {useDispatch} from 'react-redux';
 import React, {useState, useEffect} from 'react';
 import {Link} from 'react-router-dom';
 import {useHistory} from 'react-router-dom';
-import {DeleteContact} from '../../Redux/Action/ContactAction';
+import {DeleteContact , editContact} from '../../Redux/Action/ContactAction';
+
 
 export default function ShowContact () {
   let history = useHistory ();
@@ -12,6 +13,15 @@ export default function ShowContact () {
   const submithandler = () => {
     history.push ('/ContactForm');
   };
+
+  const edithandler = (data) => {
+    console.log("edit",data)
+    dispatch (editContact (data));
+    history.push('/riya')
+
+
+
+  }
 
   const contactSelector = useSelector (state => state.contacts.contacts);
   console.log ('contactSelector ', contactSelector);
@@ -50,9 +60,10 @@ export default function ShowContact () {
                     >
                       Delete
                     </button>
-                    <Link to={`/edit/${contacts.id}`}>
+                    {/* <Link to={`/edit/${contacts.id}`}>
                       <span>edit</span>
-                    </Link>;
+                    </Link> */}
+                    <button onClick={() => edithandler(contacts)}>Update</button>
 
                   </td>
                 </tr>

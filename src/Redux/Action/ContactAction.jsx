@@ -25,3 +25,10 @@ export const updateContact = updatedata =>
     payload: updatedata,
   });
 
+  export const editContact = editdata =>
+  (console.log ('updateContactAction', editdata), {
+    type: 'EDIT_CONTACT',
+    payload: editdata,
+  });
+
+

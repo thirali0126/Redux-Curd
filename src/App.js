@@ -20,6 +20,8 @@ function App() {
             <Route path="/ContactForm" exact component={ContactForm} />
             <Route path="/ShowContact" exact component={ShowContact}/>
             <Route path="/edit/:id" exact component={ContactForm}/>
+            <Route path="/riya" exact component={ContactForm} />;
+
 
           </Switch>
         </BrowserRouter>
