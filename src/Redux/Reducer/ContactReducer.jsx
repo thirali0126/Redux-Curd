@@ -4,14 +4,14 @@ const initialstate = {
       id: 1,
       Debit: "2332222222222222",
       Name: "Thirali",
-      Number: "9824008126",
+      Number: "9826508999",
       Gender: "Female"
     },
     {
       id: 2,
       Debit: "4442222222222222",
       Name: "Zalak",
-      Number: "6354476571",
+      Number: "6351116571",
       Gender: "Female",
       
     }
